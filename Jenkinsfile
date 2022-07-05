@@ -1,4 +1,5 @@
 node {
+    def commit_id
     def app
 
     stage('Clone repository') {
@@ -10,7 +11,7 @@ node {
     stage('Build image') {
         /* This builds the actual image */
 
-        app = docker.build("mobilloradmin/nodeapp:1.0.0")
+        app = docker.build("mobilloradmin/nodeapp")
     }
 
     stage('Test image') {
@@ -25,7 +26,7 @@ node {
 			You would need to first register with DockerHub before you can push images to your account
 		*/
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-id') {
-            app.push("latest")
+            app.push(commit_id)
             } 
                 echo "Trying to Push Docker Build to DockerHub"
     }
