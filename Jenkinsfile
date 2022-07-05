@@ -10,7 +10,7 @@ node {
     stage('Build image') {
         /* This builds the actual image */
 
-        app = docker.build("mobilloradmin/nodeapp")
+        app = docker.build("mobilloradmin/nodeapp:1.0.0")
     }
 
     stage('Test image') {
