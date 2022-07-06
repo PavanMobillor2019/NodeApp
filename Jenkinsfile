@@ -4,6 +4,7 @@ node {
 
     stage('Clone repository') {
         /* Cloning the Repository to our Workspace */
+	    commit_id = readFile('.git/commit-id').trim()
 
         checkout scm
     }
